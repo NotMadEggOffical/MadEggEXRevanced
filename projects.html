@@ -160,7 +160,7 @@
 // Fetch games dynamically from game.json
 async function fetchGames() {
     try {
-        const response = await fetch('/game.json');
+        const response = await fetch('/games.json');
         if (!response.ok) throw new Error('Failed to load games data');
         const games = await response.json();
         displayGames(games);
