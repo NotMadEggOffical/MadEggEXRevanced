@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Slideshow Templates</title>
+<title>KillSecurly Games</title>
 
 <!-- FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" />
@@ -33,41 +33,6 @@
         0% { opacity: 0; transform: translateY(-50px); }
         100% { opacity: 1; transform: translateY(0); }
     }
-
-    .search-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin: 20px 0;
-        opacity: 0;
-        transform: translateY(-20px);
-        animation: fadeSlideDown 0.7s ease forwards 0.5s;
-    }
-
-    .search-container input {
-        padding: 12px 20px;
-        font-size: 1.2em;
-        border-radius: 25px;
-        border: none;
-        outline: none;
-        width: 300px;
-        box-shadow: 0 0 20px #a66bff55;
-        transition: 0.3s, box-shadow 0.3s;
-    }
-    .search-container input:focus { box-shadow: 0 0 40px #00eaff; }
-
-    .search-container button {
-        padding: 12px 20px;
-        font-size: 1.2em;
-        border-radius: 25px;
-        border: none;
-        cursor: pointer;
-        background: #4a0fb3;
-        color: #fff;
-        text-shadow: 0 0 10px #a66bff;
-        transition: 0.3s transform, 0.3s box-shadow;
-    }
-    .search-container button:hover { transform: scale(1.1); box-shadow: 0 0 50px #00eaff; }
 
     .games-section {
         position: relative;
@@ -99,12 +64,8 @@
         transform: translateY(30px);
         opacity: 0;
         animation: cardFadeUp 0.6s forwards;
+        position: relative;
     }
-
-    .game-card:nth-child(1) { animation-delay: 0.1s; }
-    .game-card:nth-child(2) { animation-delay: 0.2s; }
-    .game-card:nth-child(3) { animation-delay: 0.3s; }
-    .game-card:nth-child(4) { animation-delay: 0.4s; }
 
     @keyframes cardFadeUp {
         0% { opacity: 0; transform: translateY(30px); }
@@ -127,63 +88,168 @@
     .game-card:hover img { transform: scale(1.05); }
 
     .game-card h3 { font-size: 1.3em; text-shadow: 0 0 10px #a66bff; }
+
+    .star-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        color: #ffdd55;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    .star-btn:hover { transform: scale(1.3); }
+
+    /* Embed section */
+    .embed-section {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin-top: 20px;
+    }
+
+    .embed-controls {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .embed-controls button {
+        padding: 10px 20px;
+        font-size: 1em;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #4a0fb3;
+        color: #fff;
+        text-shadow: 0 0 5px #a66bff;
+        transition: 0.3s transform, 0.3s box-shadow;
+    }
+    .embed-controls button:hover { transform: scale(1.05); box-shadow: 0 0 20px #00eaff; }
+
+    embed {
+        width: 100%;
+        height: 600px;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 0 50px #00eaff55;
+    }
 </style>
 </head>
 <body>
 
 <h1>KillSecurly Games</h1>
 
-<div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search games...">
-    <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
-</div>
-
 <div class="games-section">
     <div class="games-grid" id="gamesGrid"></div>
 </div>
 
+<div class="embed-section" id="embedSection">
+    <div class="embed-controls">
+        <button id="backBtn"><i class="fa-solid fa-arrow-left"></i> Back Home</button>
+        <button id="fullscreenBtn"><i class="fa-solid fa-expand"></i> Fullscreen</button>
+    </div>
+    <embed id="gameEmbed" src="" type="text/html">
+</div>
+
 <script>
-async function fetchGames() {
-    try {
-        const response = await fetch('/games.json');
-        if (!response.ok) throw new Error('Failed to load games.json');
-        const games = await response.json();
-        displayGames(games);
-        setupSearch(games);
-    } catch (err) {
-        console.error(err);
-        document.getElementById('gamesGrid').innerHTML = '<p style="color:red;">Failed to load games.</p>';
-    }
+let games = [];
+const gamesGrid = document.getElementById('gamesGrid');
+const embedSection = document.getElementById('embedSection');
+const gameEmbed = document.getElementById('gameEmbed');
+const backBtn = document.getElementById('backBtn');
+const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+function getStarred() {
+    return JSON.parse(localStorage.getItem('starredGames') || '[]');
 }
 
-const gamesGrid = document.getElementById('gamesGrid');
-const searchInput = document.getElementById('searchInput');
+function saveStarred(starred) {
+    localStorage.setItem('starredGames', JSON.stringify(starred));
+}
 
-function displayGames(games) {
+function displayGames(list) {
     gamesGrid.innerHTML = '';
-    games.forEach((game, index) => {
+    const starred = getStarred();
+
+    // Sort starred first
+    list.sort((a, b) => {
+        const aStar = starred.includes(a.directory);
+        const bStar = starred.includes(b.directory);
+        return (bStar ? 1 : 0) - (aStar ? 1 : 0);
+    });
+
+    list.forEach((game, index) => {
         const card = document.createElement('div');
         card.classList.add('game-card');
         card.style.animationDelay = `${0.1 * index}s`;
 
         const imagePath = `/${game.directory}/${game.image}`;
-        const gameUrl = `/${game.directory}/index.html`;
 
         card.innerHTML = `
+            <button class="star-btn"><i class="fa${getStarred().includes(game.directory) ? 's' : 'r'} fa-star"></i></button>
             <img src="${imagePath}" alt="${game.name}">
             <h3>${game.name}</h3>
         `;
-        card.onclick = () => { window.location.href = gameUrl; };
+
+        const starBtn = card.querySelector('.star-btn');
+        starBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent opening game
+            let starred = getStarred();
+            if (starred.includes(game.directory)) {
+                starred = starred.filter(g => g !== game.directory);
+            } else {
+                starred.push(game.directory);
+            }
+            saveStarred(starred);
+            displayGames(games);
+        });
+
+        card.addEventListener('click', () => {
+            openGame(game.directory);
+        });
+
         gamesGrid.appendChild(card);
     });
 }
 
-function setupSearch(games) {
-    searchInput.addEventListener("input", () => {
-        const query = searchInput.value.toLowerCase();
-        const filtered = games.filter(g => g.name.toLowerCase().includes(query));
-        displayGames(filtered);
-    });
+function openGame(directory) {
+    embedSection.style.display = 'flex';
+    gamesGrid.parentElement.style.display = 'none';
+    gameEmbed.src = `/${directory}/index.html`;
+}
+
+backBtn.addEventListener('click', () => {
+    embedSection.style.display = 'none';
+    gamesGrid.parentElement.style.display = 'block';
+    gameEmbed.src = '';
+});
+
+fullscreenBtn.addEventListener('click', () => {
+    if (gameEmbed.requestFullscreen) {
+        gameEmbed.requestFullscreen();
+    } else if (gameEmbed.webkitRequestFullscreen) { 
+        gameEmbed.webkitRequestFullscreen();
+    } else if (gameEmbed.msRequestFullscreen) {
+        gameEmbed.msRequestFullscreen();
+    }
+});
+
+async function fetchGames() {
+    try {
+        const response = await fetch('/games.json');
+        if (!response.ok) throw new Error('Failed to load games.json');
+        games = await response.json();
+        displayGames(games);
+    } catch (err) {
+        console.error(err);
+        gamesGrid.innerHTML = '<p style="color:red;">Failed to load games.</p>';
+    }
 }
 
 fetchGames();
