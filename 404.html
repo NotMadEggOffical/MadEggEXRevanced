@@ -1,84 +1,106 @@
+
 <!DOCTYPE html>
-<html class="sl-theme-dark" lang="en">
-  <head>
-    <!-- initialize theme vars
-    https://coolors.co/10002b-240046-3c096c-5a189a-7b2cbf-9d4edd-c77dff-e0aaff -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 - Page Not Found</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
 
-    <!-- initialize externals -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src=" https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js "></script>
-    
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/dark.css" />
-     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace-autoloader.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
 
+    .container {
+      max-width: 600px;
+      width: 100%;
+    }
 
-    <!-- initialize my stuff -->
-    <script src="/js/all.js"></script>
-    <script src="/js/main.js"></script>
-<script src="/js/themes.js"></script>
-    <link rel="stylesheet" href="/themes.css" />
-    <link rel="stylesheet" href="/style.css" />
+    .error-image {
+      background-image: url("https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 250px;
+      margin-bottom: 20px;
+    }
 
+    .error-code {
+      font-size: 72px;
+      font-weight: 800;
+      color: #000;
+    }
 
+    .error-message {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 10px 0;
+    }
 
-    <script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
-      new Crate({
-          server: '1148719137238040606', // Selenite
-          channel: '1173731814196645909' // #commands
-      })
-    </script>
+    .error-description {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 30px;
+    }
 
+    .link_404 {
+      padding: 12px 25px;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
 
-    <!-- seo + other things -->
-    <title>Selenite</title>
-    <link rel="icon" href="/favicon.ico" />
+    .link_404:hover {
+      background-color: #218838;
+    }
 
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    @media (max-width: 600px) {
+      .error-code {
+        font-size: 56px;
+      }
 
-    <!-- toastify -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const dialog = document.querySelector('.dialog-width');
-      const input = dialog.querySelector('sl-input');
-      const openButton = dialog.nextElementSibling;
-      const closeButton = dialog.querySelector('sl-button[slot="footer"]');
-      setTimeout(() => {
-        dialog.show();
-      }, 200)
-      
+      .error-message {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="error-image"></div>
+    <div class="error-code">404</div>
+    <div class="error-message">Look like you're lost</div>
+    <div class="error-description">The page you are looking for does not exist! ~ If this was a slide template, try again later.</div>
+    <a href="/" class="link_404">Go Home</a>
+  </div>
+
+  <script>
+    document.addEventListener("keydown", function(event) {
+      if (event.shiftKey && event.altKey && event.key.toLowerCase() === "k") {
+        window.location.href = "https://404.templateslide.com/";
+      }
     });
-    </script>
-  </head>
-  <alerts>
-    <sl-dialog label="Page not found!" class="dialog-width" style="--width: 60vw;">
-      Oops! Looks like you found a page that doesn't exist! If you found this from regular website usage, then please <a href="/support.html">report a bug</a>!
-      <sl-button slot="footer" variant="neutral">Close</sl-button>
-    </sl-dialog>
-  </alerts>
-  <body id="noscroll">
-    <header>
-      <a href="/index.html">Home</a>
-      <a href="/bookmarklets.html">Bookmarklets</a>
-      <a href="/projects.html">Games</a>
-      <a href="/settings.html">Settings</a>
-      <a href="/support.html">Support</a>
-      <a id="blank" href="#">Open Blank</a>
-      <a href="/about.html">About</a>
-    </header>
-    <main id="main" class="noscroll">
+  </script>
 
-    </main>
-    
-    <footer class="noscroll">
-      <a href="https://github.com/selenite-cc/Selenite">Source Code</a>
-      <a id="panicmode">Panic Mode</a>
-      <a href="/transfer.html">Transfer your data</a>
-      <a href="/suggest.html">Bug Reports</a>
-      <a href="https://discord.gg/7jyufnwJNf">Discord</a>
-      <a href="/suggest.html">Suggestions</a>
-      <a href="/contact.html">Contact</a>
-    </footer>
-    
-  </body>
+  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"7d4aac032a1744b48c4526c9b7d9983b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
 </html>
