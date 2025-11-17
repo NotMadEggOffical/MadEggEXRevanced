@@ -1,97 +1,224 @@
 <!DOCTYPE html>
-<html class="sl-theme-dark" lang="en">
-  <head>
-    <!-- initialize theme vars
-    https://coolors.co/10002b-240046-3c096c-5a189a-7b2cbf-9d4edd-c77dff-e0aaff -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KillSecurly Foundation</title>
 
-    <!-- initialize externals -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src=" https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js "></script>
-    
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/dark.css" />
-     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace-autoloader.js"></script>
-  
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" />
 
-    <!-- initialize my stuff -->
-    <script src="/js/all.js"></script>
-    <script src="/js/main.js"></script>
-<script src="/js/themes.js"></script>
-    <script src="/js/randomquote.js"></script>
-    <link rel="stylesheet" href="/themes.css" />
-    <link rel="stylesheet" href="/style.css" />
+<!-- Particles.js -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+    html, body {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background: linear-gradient(135deg, #4a0fb3, #160035);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        position: relative;
+    }
 
+    #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
 
-    <script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
-      new Crate({
-          server: '1148719137238040606', // KillSecurly
-          channel: '1173731814196645909' // #commands
-      })
-    </script>
+    h1 { font-size: 4em; margin-bottom: 0.5em; text-shadow: 0 0 20px #a66bff, 0 0 40px #a66bff; }
+    p { font-size: 1.5em; margin-bottom: 2em; max-width: 900px; text-shadow: 0 0 10px #a66bff; }
 
+    .buttons { display: flex; gap: 35px; margin-bottom: 20px; }
+    .buttons a {
+        font-size: 3.8em; text-decoration: none; color: #ffffff;
+        padding: 18px; border-radius: 25px; box-shadow: 0 0 25px #00eaffaa;
+        transition: 0.25s;
+    }
+    .buttons a:hover { transform: scale(1.35); box-shadow: 0 0 60px #00eaff, 0 0 120px #00eaff; }
 
-    <!-- seo + other things -->
-    <title>KillSecurly</title>
-    <link rel="icon" href="/favicon.ico" />
-    <meta
-      name="keywords"
-      content="front-end web developer, unblocked, games, google sites, unblocked games mom, ublocked, code, coding, programmer, development, javascript, jquery, bootstrap, sass, less, git, gaming, internet, website, best, site, cool, free games"
-    />
+    .settings-button { position: absolute; top: 20px; right: 20px; font-size: 1.6em; background: none; color: #ffffff; border: none; cursor: pointer; text-shadow: 0 0 12px #a66bff; transition: 0.25s; }
+    .settings-button:hover { transform: scale(1.3); text-shadow: 0 0 20px #d5a1ff; }
 
-  </head>
-  <alerts>
-    <sl-dialog label="Welcome to KillSecurly!" class="dialog-width" style="--width: 60vw;display:none;">
-      Thank you for choosing KillSecurly! You will be able to play over 150 high quality games, and we have many tools to make your experience better.
-      <br>
-      Wanting to transfer your data from another website? Try the transfer utility in the footer!
-      <br>
-      Want to support the development of KillSecurly? Join the <a href="https://discord.killsecurly.com">Discord</a> 
-      <br>
-      Learn more about KillSecurly at the about page in the header!
-      <br>
-      Try out the KillSecurly Minified bookmarklet in the bookmarklets page!
-      <br>
-      Have a great day!
-      <sl-button slot="footer" variant="neutral">Close</sl-button>
-    </sl-dialog>
-  </alerts>
-  <body id="noscroll">
-    <header>
-      <a href="/index.html">Home</a>
-      <a href="/bookmarklets.html">Bookmarklets</a>
-      <a href="/projects.html">Games</a>
-      <a href="/settings.html">Settings</a>
-      <a href="/support.html">Support</a>
-      <a id="blank" href="#">Open Blank</a>
-      <a href="/about.html">About</a>
-    </header>
-    <main id="main" class="noscroll">
-      <h1>KillSecurly.</h1>
-      <p id="randomquote">...</p>
-      <div class="samerow">
-        <div class="img-container">
-        </div>
-        <div class="img-container">
-          <a href="projects.html"><img src="img/baseline_sports_esports_white_48dp.png"></a>
-        </div>
-        <div class="img-container">
-          <a href="https://discord.gg/7jyufnwJNf"><img src="img/discord-mark-white.png"></a>
-        </div>
-      </div>
-      <div id="adcontainer">
-        <script async="async" data-cfasync="false" src="//pl22225360.toprevenuegate.com/92108816b5da54426d1639bcbfb5785c/invoke.js"></script>
-        <div id="container-92108816b5da54426d1639bcbfb5785c"></div>
-      </div>
-    </main>
-    
-    <footer class="noscroll">
-      <a id="panicmode">Panic Mode</a>
-      <a href="/transfer.html">Transfer your data</a>
-      <a href="/suggest.html">Bug Reports</a>
-      <a href="https://discord.gg/7jyufnwJNf">Discord</a>
-      <a href="/suggest.html">Suggestions</a>
-      <a href="/contact.html">Contact</a>
-    </footer>
-    
-  </body>
+    .settings-panel {
+        display: none;
+        position: absolute; top: 60px; right: 20px;
+        background: #1b0d33; padding: 20px; border-radius: 12px;
+        box-shadow: 0 0 20px #a66bff; color: #fff; z-index: 10;
+    }
+</style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<h1>KillSecurly Foundation</h1>
+<p id="random-quote"></p>
+
+<div class="buttons">
+    <a href="https://discord.killsecurly.com"><i class="fa-brands fa-discord"></i></a>
+    <a href="/projects.html"><i class="fa-solid fa-gamepad"></i></a>
+    <a href="https://templateslide.com"><i class="fa-solid fa-link"></i></a>
+</div>
+
+<button class="settings-button"><i class="fa-solid fa-gear"></i></button>
+
+<div class="settings-panel">
+    <label for="colorPicker">Particle Color:</label>
+    <input type="color" id="colorPicker" value="#ffffff">
+</div>
+
+<script>
+const quotes = [
+    "pay attention during school",
+    "Obama have dih",
+    "Cordih",
+    "KillSecurly >>> now.gg",
+    "Lorem ipsum dolor sit amet, adipiscing consequat adipiscing sit amet. In tortor dolor, sollicitudin quis urna vitae, rutrum selecrelico dolor. Ut facilisis ornare lacus, ut dictum felis aliquam ut. Omnino interdum fit cum cura. Non est aequum, non solum, sed nec refert quis sit terra. Sed vestibulum a tellus non semper. Aliquam a neque euismod dolor dapibus aliquet ultricies ut nibh. Sed eget auctor ante. Aliquam dictum volutpat vestibulum. Putasti ovum paschale futurum. Nullo modo.",
+    "ive currently lost $12 on this website",
+    "join the discord NOW",
+    "have any of you played Roblox?",
+    "linux is so much better than windows but no fornite :(",
+    "🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸",
+    "chromebooks suck",
+    "technoblade never dies",
+    "KillSecurly has not shut down.",
+    "theres at least 2, maybe 3 games on this website",
+    "Cordis is peak gng",
+    "GET BACK TA WORK",
+    "why is 1v1lol the most popular game",
+    "UNDERTALE",
+    "DONATE TO RYANS BITCOIN SO HE WOBT BE BROKE",
+    "usecordis",
+    "#usecordis",
+    "#usecordis",
+    "Ryans weight is the sqare root of OGNUM1 is SQRTNUM1",
+    "#affableansh",
+    "well well well.",
+    "donatte to ryans bitcoin",
+    "welcome back to another mincraft lets play vid",
+    "🥺👉👈",
+    "what website is this?",
+    "we love about:blank",
+    "discord.killsecurly.com",
+    "join the discord to be cool",
+    "💀",
+    "check steam",
+    "celseste",
+    "geometry dash",
+    "does anyone call twitter X other than Ryan?",
+    "KSF",
+    "Ryan is always correct",
+    "happy new years everyone",
+    "merry christmas everyone",
+    "happy easter day everyone",
+    "happy halloween everyone",
+    "happy thanksgiving everyone",
+    "happy valentines day everyone",
+    "happy birthday to me",
+    "happy birthday to you",
+    "happy birthday to everyone",
+    "happy birthday to the website",
+    "there is a teacher watching you, look behind you",
+    "UNDERTALE IS PEAK",
+    "CELESTE IS PEAK",
+    "twoplayergames.org",
+    "KillSecurly",
+    "sub to InkBoyM",
+    "now.gg ew",
+    "jaydens bus is here",
+    "KillSecurly is the best",
+    "KillSecurly is the best website",
+    "KillSecurly is the best website ever",
+    "KillSecurly is the best website ever made",
+    "KillSecurly is the best website ever made in the history of the world",
+    "KillSecurly is the best website ever made in the history of the world and the universe",
+    "KillSecurly is the best website ever made in the history of the world and the universe and the galaxy",
+    "KillSecurly is the best website ever made in the history of the world and the universe and the galaxy and the solar system",
+    "KillSecurly is the best website ever made in the history of the world and the universe and the galaxy and the solar system and the milky way",
+    "KillSecurly is the best website ever made in the history of the world and the universe and the galaxy and the solar system and the milky way and the universe",
+    "Ronit Wienstock",
+    "i love piracy",
+    "i love piracy and you should too",
+    "ai is gonna take over the world",
+    "Evan x Declan",
+    "KillSecurly"
+];
+
+document.getElementById("random-quote").innerText = quotes[Math.floor(Math.random()*quotes.length)];
+
+const settingsBtn = document.querySelector('.settings-button');
+const settingsPanel = document.querySelector('.settings-panel');
+settingsBtn.onclick = () => {
+    settingsPanel.style.display = settingsPanel.style.display === 'block' ? 'none' : 'block';
+};
+
+const colorPicker = document.getElementById('colorPicker');
+const savedColor = localStorage.getItem('particleColor') || '#ffffff';
+colorPicker.value = savedColor;
+
+// ✅ NEW WORKING PARTICLES CONFIG
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+    "color": { "value": savedColor },
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.8, "random": true },
+    "size": { "value": 5, "random": true },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": savedColor,
+      "opacity": 0.5,
+      "width": 1
+    },
+    "move": {
+      "enable": true,
+      "speed": 2,
+      "direction": "none",
+      "random": true,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": { "enable": true, "mode": "repulse" },
+      "onclick": { "enable": true, "mode": "push" },
+      "resize": true
+    },
+    "modes": {
+      "repulse": { "distance": 200, "duration": 0.4 },
+      "push": { "particles_nb": 4 }
+    }
+  },
+  "retina_detect": true
+});
+
+// Update color dynamically
+colorPicker.addEventListener("input", () => {
+    const newColor = colorPicker.value;
+    localStorage.setItem("particleColor", newColor);
+    if (window.pJSDom && window.pJSDom.length > 0) {
+        const pJS = window.pJSDom[0].pJS;
+        pJS.particles.color.value = newColor;
+        pJS.particles.line_linked.color = newColor;
+        pJS.fn.particlesRefresh();
+    }
+});
+</script>
+
+</body>
 </html>
