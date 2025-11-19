@@ -1379,11 +1379,42 @@
     "image": "cover.svg",
     "recommended": "1"
   },
-  {
+ {
     "name": "Undertale",
     "directory": "Undertale",
     "image": "cover.svg",
     "recommended": "1"
+  },
+  {
+    "name": "Silksong",
+    "directory": "Silksong",
+    "image": "cover.svg",
+    "recommended": "1"
+  },
+  {
+    "name": "Deltarune",
+    "directory": "Deltarune",
+    "image": "cover.svg",
+    "recommended": "1"
+  },
+  {
+    "name": "Hollow Night",
+    "directory": "HollowNight",
+    "image": "cover.svg",
+    "recommended": "1"
+  },
+  {
+    "name": "Balatro",
+    "directory": "Balatro",
+    "image": "cover.svg",
+    "recommended": "1"
+  },
+  {
+    "name": "Smash Karts",
+    "directory": "SmashKarts",
+    "image": "cover.svg",
+    "recommended": "1"
   }
 ]
+
 
