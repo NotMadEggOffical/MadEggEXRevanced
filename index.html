@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KillSecurly Foundation</title>
-
-<!-- FontAwesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" />
-
-<!-- Particles.js -->
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-<style>
+<title>KillSecurly Foundation</title><!-- FontAwesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" /><!-- Particles.js --><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
     html, body {
         height: 100%;
@@ -56,27 +47,34 @@
         background: #1b0d33; padding: 20px; border-radius: 12px;
         box-shadow: 0 0 20px #a66bff; color: #fff; z-index: 10;
     }
-</style>
-</head>
-<body>
 
-<div id="particles-js"></div>
-
-<h1>KillSecurly Foundation</h1>
-<p id="random-quote"></p>
-
-<div class="buttons">
+    /* Download button bottom-left */
+    .download-btn {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        font-size: 2.3em;
+        color: #ffffff;
+        cursor: pointer;
+        text-shadow: 0 0 12px #00eaff;
+        transition: 0.25s;
+    }
+    .download-btn:hover {
+        transform: scale(1.3);
+        text-shadow: 0 0 25px #00eaff;
+    }
+</style></head>
+<body><div id="particles-js"></div><h1>KillSecurly Foundation</h1>
+<p id="random-quote"></p><div class="buttons">
     <a href="https://discord.killsecurly.com"><i class="fa-brands fa-discord"></i></a>
     <a href="/projects.html"><i class="fa-solid fa-gamepad"></i></a>
     <a href="https://killsecurly.com"><i class="fa-solid fa-link"></i></a>
-</div>
-
-<button class="settings-button"><i class="fa-solid fa-gear"></i></button>
+</div><button class="settings-button"><i class="fa-solid fa-gear"></i></button>
 
 <div class="settings-panel">
     <label for="colorPicker">Particle Color:</label>
     <input type="color" id="colorPicker" value="#ffffff">
-</div>
+</div><!-- Download Button --><i class="fa-solid fa-download download-btn" id="downloadFile"></i>
 
 <script>
 const quotes = [
@@ -89,7 +87,7 @@ const quotes = [
     "join the discord NOW",
     "have any of you played Roblox?",
     "linux is so much better than windows but no fornite :(",
-    "🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸🇵🇸",
+    "Welcome to Gboard clipboard, any text you copy will be saved here.",
     "chromebooks suck",
     "technoblade never dies",
     "KillSecurly has not shut down.",
@@ -156,7 +154,6 @@ const colorPicker = document.getElementById('colorPicker');
 const savedColor = localStorage.getItem('particleColor') || '#ffffff';
 colorPicker.value = savedColor;
 
-// ✅ NEW WORKING PARTICLES CONFIG
 particlesJS("particles-js", {
   "particles": {
     "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
@@ -196,7 +193,6 @@ particlesJS("particles-js", {
   "retina_detect": true
 });
 
-// Update color dynamically
 colorPicker.addEventListener("input", () => {
     const newColor = colorPicker.value;
     localStorage.setItem("particleColor", newColor);
@@ -207,7 +203,33 @@ colorPicker.addEventListener("input", () => {
         pJS.fn.particlesRefresh();
     }
 });
-</script>
+
+// Download HTML file
+const fileContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learning</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    embed, iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style></head>
+<body>
+  <iframe src="https://ksfis.onthewifi.com"></iframe>
+</body>
+</html>`;document.getElementById("downloadFile").onclick = () => { const blob = new Blob([fileContent], { type: 'text/html' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = "learning.html"; a.click(); URL.revokeObjectURL(url); }; </script>
 
 </body>
 </html>
