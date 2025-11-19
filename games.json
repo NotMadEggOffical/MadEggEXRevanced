@@ -1362,9 +1362,28 @@
     "directory": "dadish3",
     "image": "splash.png"
   },
-  {
+{
     "name": "Watermelon Game",
     "directory": "watermelongame",
     "image": "assets/sprites/tittle.png"
+  },
+  {
+    "name": "Kour",
+    "directory": "Kour",
+    "image": "cover.svg",
+    "recommended": "1"
+  },
+  {
+    "name": "Ice Dodo",
+    "directory": "IceDodo",
+    "image": "cover.svg",
+    "recommended": "1"
+  },
+  {
+    "name": "Undertale",
+    "directory": "Undertale",
+    "image": "cover.svg",
+    "recommended": "1"
   }
 ]
+
