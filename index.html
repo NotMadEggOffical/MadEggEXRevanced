@@ -1,235 +1,164 @@
-<!DOCTYPE html><html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KillSecurly Foundation</title><!-- FontAwesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" /><!-- Particles.js --><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script><style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-    html, body {
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-        background: linear-gradient(135deg, #4a0fb3, #160035);
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
-        position: relative;
-    }
-
-    #particles-js {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: -1;
-    }
-
-    h1 { font-size: 4em; margin-bottom: 0.5em; text-shadow: 0 0 20px #a66bff, 0 0 40px #a66bff; }
-    p { font-size: 1.5em; margin-bottom: 2em; max-width: 900px; text-shadow: 0 0 10px #a66bff; }
-
-    .buttons { display: flex; gap: 35px; margin-bottom: 20px; }
-    .buttons a {
-        font-size: 3.8em; text-decoration: none; color: #ffffff;
-        padding: 18px; border-radius: 25px; box-shadow: 0 0 25px #00eaffaa;
-        transition: 0.25s;
-    }
-    .buttons a:hover { transform: scale(1.35); box-shadow: 0 0 60px #00eaff, 0 0 120px #00eaff; }
-
-    .settings-button { position: absolute; top: 20px; right: 20px; font-size: 1.6em; background: none; color: #ffffff; border: none; cursor: pointer; text-shadow: 0 0 12px #a66bff; transition: 0.25s; }
-    .settings-button:hover { transform: scale(1.3); text-shadow: 0 0 20px #d5a1ff; }
-
-    .settings-panel {
-        display: none;
-        position: absolute; top: 60px; right: 20px;
-        background: #1b0d33; padding: 20px; border-radius: 12px;
-        box-shadow: 0 0 20px #a66bff; color: #fff; z-index: 10;
-    }
-
-    /* Download button bottom-left */
-    .download-btn {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        font-size: 2.3em;
-        color: #ffffff;
-        cursor: pointer;
-        text-shadow: 0 0 12px #00eaff;
-        transition: 0.25s;
-    }
-    .download-btn:hover {
-        transform: scale(1.3);
-        text-shadow: 0 0 25px #00eaff;
-    }
-</style></head>
-<body><div id="particles-js"></div><h1>KillSecurly Foundation</h1>
-<p id="random-quote"></p><div class="buttons">
-    <a href="https://discord.killsecurly.com"><i class="fa-brands fa-discord"></i></a>
-    <a href="/projects.html"><i class="fa-solid fa-gamepad"></i></a>
-    <a href="https://killsecurly.com"><i class="fa-solid fa-link"></i></a>
-</div><button class="settings-button"><i class="fa-solid fa-gear"></i></button>
-
-<div class="settings-panel">
-    <label for="colorPicker">Particle Color:</label>
-    <input type="color" id="colorPicker" value="#ffffff">
-</div><!-- Download Button --><i class="fa-solid fa-download download-btn" id="downloadFile"></i>
-
-<script>
-const quotes = [
-    "pay attention during school",
-    "Obama have dih",
-    "Cordih",
-    "KillSecurly >>> now.gg",
-    "Lorem ipsum dolor sit amet, adipiscing consequat adipiscing sit amet. In tortor dolor, sollicitudin quis urna vitae, rutrum selecrelico dolor. Ut facilisis ornare lacus, ut dictum felis aliquam ut. Omnino interdum fit cum cura. Non est aequum, non solum, sed nec refert quis sit terra. Sed vestibulum a tellus non semper. Aliquam a neque euismod dolor dapibus aliquet ultricies ut nibh. Sed eget auctor ante. Aliquam dictum volutpat vestibulum. Putasti ovum paschale futurum. Nullo modo.",
-    "ive currently lost $12 on this website",
-    "join the discord NOW",
-    "have any of you played Roblox?",
-    "linux is so much better than windows but no fornite :(",
-    "Welcome to Gboard clipboard, any text you copy will be saved here.",
-    "chromebooks suck",
-    "technoblade never dies",
-    "KillSecurly has not shut down.",
-    "theres at least 2, maybe 3 games on this website",
-    "Cordis is peak gng",
-    "GET BACK TA WORK",
-    "why is 1v1lol the most popular game",
-    "UNDERTALE",
-    "DONATE TO RYANS BITCOIN SO HE WOBT BE BROKE",
-    "usecordis",
-    "#usecordis",
-    "#usecordis",
-    "#affableansh",
-    "well well well.",
-    "donatte to ryans solanasolana",
-    "welcome back to another mincraft lets play vid",
-    "🥺👉👈",
-    "what website is this?",
-    "we love about:blank",
-    "discord.killsecurly.com",
-    "join the discord to be cool",
-    "💀",
-    "check steam",
-    "celseste",
-    "geometry dash",
-    "does anyone call twitter X other than Ryan?",
-    "KSF",
-    "Ryan is always correct",
-    "there is a teacher watching you, look behind you",
-    "UNDERTALE IS PEAK",
-    "CELESTE IS PEAK",
-    "twoplayergames.org",
-    "KillSecurly",
-    "sub to InkBoyM",
-    "now.gg ew",
-    "jaydens bus is here",
-    "KillSecurly is the best",
-    "KillSecurly is the best website",
-    "KillSecurly is the best website ever",
-    "KillSecurly is the best website ever made",
-    "KillSecurly is the best website ever made in the history of the world",
-    "KillSecurly is the best website ever made in the history of the world and the universe",
-    "KillSecurly is the best website ever made in the history of the world and the universe and the galaxy",
-    "KillSecurly is the best website ever made in the history of the world and the universe and the galaxy and the solar system",
-    "KillSecurly is the best website ever made in the history of the world and the universe and the galaxy and the solar system and the milky way",
-    "KillSecurly is the best website ever made in the history of the world and the universe and the galaxy and the solar system and the milky way and the universe",
-    "Ronit Wienstock",
-    "i love piracy",
-    "i love piracy and you should too",
-    "ai is gonna take over the world",
-    "Evan x Declan",
-    "KillSecurly"
-];
-
-document.getElementById("random-quote").innerText = quotes[Math.floor(Math.random()*quotes.length)];
-
-const settingsBtn = document.querySelector('.settings-button');
-const settingsPanel = document.querySelector('.settings-panel');
-settingsBtn.onclick = () => {
-    settingsPanel.style.display = settingsPanel.style.display === 'block' ? 'none' : 'block';
-};
-
-const colorPicker = document.getElementById('colorPicker');
-const savedColor = localStorage.getItem('particleColor') || '#ffffff';
-colorPicker.value = savedColor;
-
-particlesJS("particles-js", {
-  "particles": {
-    "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
-    "color": { "value": savedColor },
-    "shape": { "type": "circle" },
-    "opacity": { "value": 0.8, "random": true },
-    "size": { "value": 5, "random": true },
-    "line_linked": {
-      "enable": true,
-      "distance": 150,
-      "color": savedColor,
-      "opacity": 0.5,
-      "width": 1
-    },
-    "move": {
-      "enable": true,
-      "speed": 2,
-      "direction": "none",
-      "random": true,
-      "straight": false,
-      "out_mode": "out",
-      "bounce": false
-    }
-  },
-  "interactivity": {
-    "detect_on": "canvas",
-    "events": {
-      "onhover": { "enable": true, "mode": "repulse" },
-      "onclick": { "enable": true, "mode": "push" },
-      "resize": true
-    },
-    "modes": {
-      "repulse": { "distance": 200, "duration": 0.4 },
-      "push": { "particles_nb": 4 }
-    }
-  },
-  "retina_detect": true
-});
-
-colorPicker.addEventListener("input", () => {
-    const newColor = colorPicker.value;
-    localStorage.setItem("particleColor", newColor);
-    if (window.pJSDom && window.pJSDom.length > 0) {
-        const pJS = window.pJSDom[0].pJS;
-        pJS.particles.color.value = newColor;
-        pJS.particles.line_linked.color = newColor;
-        pJS.fn.particlesRefresh();
-    }
-});
-
-// Download HTML file
-const fileContent = `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Learning</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KillSecurly Foundation</title>
 
-    embed, iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-  </style></head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background: linear-gradient(135deg, #4a0fb3, #160035);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .content * { pointer-events: auto; }
+
+        h1 { font-size: 4em; margin-bottom: 0.5em; text-shadow: 0 0 20px #a66bff, 0 0 40px #a66bff; }
+        p { font-size: 1.5em; margin-bottom: 2em; max-width: 800px; text-shadow: 0 0 10px #a66bff; margin-left: auto; margin-right: auto; }
+
+        .buttons { display: flex; gap: 35px; justify-content: center; margin-bottom: 20px; }
+        
+        .buttons a {
+            font-size: 3.5em; 
+            text-decoration: none; 
+            color: #ffffff;
+            padding: 20px; 
+            border-radius: 20px; 
+            transition: 0.25s;
+            border: 3px solid #a66bff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .buttons a:hover { 
+            transform: scale(1.15); 
+            text-shadow: 0 0 30px #00eaff, 0 0 60px #00eaff;
+            border-color: #00eaff; 
+            box-shadow: 0 0 20px rgba(0, 234, 255, 0.5); 
+        }
+
+        .settings-button { position: absolute; top: 20px; right: 20px; font-size: 1.6em; background: none; color: #ffffff; border: none; cursor: pointer; text-shadow: 0 0 12px #a66bff; transition: 0.25s; z-index: 10; }
+        .settings-button:hover { transform: scale(1.3); text-shadow: 0 0 20px #d5a1ff; }
+
+        .settings-panel {
+            display: none;
+            position: absolute; top: 65px; right: 20px;
+            background: rgba(27, 13, 51, 0.9); padding: 20px; border-radius: 12px;
+            box-shadow: 0 0 20px #a66bff; color: #fff; z-index: 10;
+        }
+
+        .download-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 2.3em;
+            color: #ffffff;
+            cursor: pointer;
+            text-shadow: 0 0 12px #00eaff;
+            transition: 0.25s;
+            z-index: 10;
+        }
+        .download-btn:hover { transform: scale(1.3); text-shadow: 0 0 25px #00eaff; }
+    </style>
+</head>
 <body>
-  <iframe src="https://ksfis.onthewifi.com"></iframe>
-</body>
-</html>`;document.getElementById("downloadFile").onclick = () => { const blob = new Blob([fileContent], { type: 'text/html' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = "learning.html"; a.click(); URL.revokeObjectURL(url); }; </script>
 
+<div id="particles-js"></div>
+
+<div class="content">
+    <h1>KillSecurly Foundation</h1>
+    <p id="random-quote">Loading</p>
+
+    <div class="buttons">
+        <a href="https://discord.killsecurly.com" target="_blank"><i class="fa-brands fa-discord"></i></a>
+        <a href="/projects.html"><i class="fa-solid fa-gamepad"></i></a>
+        <a href="https://killsecurly.com" target="_blank"><i class="fa-solid fa-link"></i></a>
+    </div>
+</div>
+
+<button class="settings-button" id="settingsBtn"><i class="fa-solid fa-gear"></i></button>
+<div class="settings-panel" id="settingsPanel">
+    <label for="colorPicker">Particle Color:</label>
+    <input type="color" id="colorPicker" value="#ffffff">
+</div>
+<i class="fa-solid fa-download download-btn" id="downloadFile" title="Download Learning File"></i>
+
+<script>
+    const quotes = ["Nazar is dumb", "Nazar is rasict.", "ryan is always correct"];
+    document.getElementById("random-quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
+
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsPanel = document.getElementById('settingsPanel');
+    settingsBtn.onclick = () => { settingsPanel.style.display = settingsPanel.style.display === 'block' ? 'none' : 'block'; };
+
+    const colorPicker = document.getElementById('colorPicker');
+    const savedColor = localStorage.getItem('particleColor') || '#ffffff';
+    colorPicker.value = savedColor;
+
+    function initParticles(color) {
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": color },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.8, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": color, "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "out_mode": "out" }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } },
+                "modes": { "repulse": { "distance": 150, "duration": 0.4 } }
+            },
+            "retina_detect": true
+        });
+    }
+    initParticles(savedColor);
+    colorPicker.addEventListener("input", () => {
+        const newColor = colorPicker.value;
+        localStorage.setItem("particleColor", newColor);
+        initParticles(newColor);
+    });
+
+    document.getElementById("downloadFile").onclick = () => {
+        const fileContent = `<!DOCTYPE html><html><head><title>Learning</title><style>html, body { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; } iframe { width: 100%; height: 100%; border: none; }</style></head><body><iframe src="https://ksfshouldbe.onthewifi.com"></iframe></body></html>`;
+        const blob = new Blob([fileContent], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = "learning.html"; a.click();
+        URL.revokeObjectURL(url);
+    };
+</script>
 </body>
 </html>
