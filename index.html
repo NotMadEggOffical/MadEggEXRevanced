@@ -114,7 +114,7 @@
 <i class="fa-solid fa-download download-btn" id="downloadFile" title="Download Learning File"></i>
 
 <script>
-    const quotes = ["what do i put here?", "use cordis.", "ryan is always correct"];
+    const quotes = ["what do i put here?", "use cordis.", "ryan is always correct", "Im gonna fly some planes into a couple buildings in 9/11", "run tell obama, im your fricking uncle", "#releasethefiles", "for everything else, there is MasterCard", "will we ever see middle east peace? ha", "WE yes WE are KSF", "call me khameni", "follow us on tiktok", "discord.killsecurly.com", "where you think you going Bibi? Hey i just got nukes! no im not crazy! i need them for some energy saving, first name aytolla last name khameni", "we have 5 nights at esptens", "welcome to del taco bell", "donate pls", "Fun fact: in springfield they are eating the dogs, the cats, the pets of the people who live there - Donald J Trump"];
     document.getElementById("random-quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
 
     const settingsBtn = document.getElementById('settingsBtn');
@@ -152,7 +152,7 @@
     });
 
     document.getElementById("downloadFile").onclick = () => {
-        const fileContent = `<!DOCTYPE html><html><head><title>Learning</title><style>html, body { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; } iframe { width: 100%; height: 100%; border: none; }</style></head><body><iframe src="https://ksfshouldbe.onthewifi.com"></iframe></body></html>`;
+        const fileContent = `<!DOCTYPE html><html><head><title>Learning</title><style>html, body { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; } iframe { width: 100%; height: 100%; border: none; }</style></head><body><iframe src="https://ksfistill.onthewifi.com"></iframe></body></html>`;
         const blob = new Blob([fileContent], { type: 'text/html' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
