@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>classroom.google.com</title>
+    
+<title>classroom.google.com</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         
@@ -164,8 +165,8 @@
         if (game.type === 'embed') {
             f.contentDocument.write(`<html><body style="margin:0"><embed src="${game.url}" width="100%" height="100%"></body></html>`);
         } else {
-            const code = await (await fetch(game.url)).text();
-            f.contentDocument.open(); f.contentDocument.write(code); f.contentDocument.close();
+            // new api
+            f.src = game.url;
         }
     }
 
@@ -173,7 +174,6 @@
         const q = e.target.value.toLowerCase();
         displayGames(allGames.filter(g => g.name.toLowerCase().includes(q)));
     };
-
     loadGames();
 </script>
 </body>
